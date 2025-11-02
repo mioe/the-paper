@@ -32,6 +32,7 @@ export default antfu({
 	},
 	ignores: [
 		'**/migrations/*',
+		'**/.pocketbase/**/*',
 	],
 }, {
 	rules: {

@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import ErrorPage from '~/error-page.vue'
 
 const router = createRouter({
-	history: createWebHashHistory(),
+	history: createWebHistory(),
 	routes: [
 		...routes,
 		{ path: '/:pathMatch(.*)*', name: 'error-page', component: ErrorPage },

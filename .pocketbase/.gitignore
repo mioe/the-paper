@@ -1,0 +1,6 @@
+pb_data/*.db
+pb_data/*.db-shm
+pb_data/*.db-wal
+
+pb_data/storage/*
+pb_data/backups/*
