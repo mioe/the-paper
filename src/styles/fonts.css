@@ -1,0 +1,41 @@
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/assets/fonts/JetBrains Mono/variable/JetBrainsMono[wght].ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'JetBrains Mono';
+	src: url('/assets/fonts/JetBrains Mono/variable/JetBrainsMono-Italic[wght].ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'iA Writer Quattro';
+	src: url('/assets/fonts/iA Writer Quattro/Variable/iAWriterQuattroV.ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'iA Writer Quattro';
+	src: url('/assets/fonts/iA Writer Quattro/Variable/iAWriterQuattroV-Italic.ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/assets/fonts/Lora/Lora-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Lora';
+	src: url('/assets/fonts/Lora/Lora-Italic-VariableFont_wght.ttf') format('truetype');
+	font-weight: 100 800;
+	font-style: italic;
+}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+		/>
+
+		<!-- pwa -->
+		<meta name="theme-color" content="#000000" />
+
+		<!-- favicons -->
+		<link rel="icon" type="image/png" href="/favicons/favicon-96x96.png" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/favicons/favicon.svg" />
+		<link rel="shortcut icon" href="/favicons/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png" />
+
+		<!-- dark mode -->
+		<script>
+			;(function () {
+				const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+				const setting = localStorage.getItem('the-paper:theme') || 'auto'
+				if (setting === 'dark' || (setting === 'auto' && prefersDark))
+					document.documentElement.classList.toggle('dark', true)
+			})()
+		</script>
+
+		<title>the-paper</title>
+	</head>
+	<body>
+		<div id="app"></div>
+		<script type="module" src="/src/main.ts"></script>
+
+		<div
+			class="pointer-events-none z-[-2] fixed inset-0 bg-[size:180px] bg-repeat opacity-[0.035] dark:opacity-[0.012]"
+			style="background-image: url(/assets/pictures/noise.png)"
+		></div>
+	</body>
+</html>
