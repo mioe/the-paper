@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import { handleHotUpdate, routes } from 'vue-router/auto-routes'
 
 import ErrorPage from '~/error-page.vue'
+import { authGuard } from '~/guards/auth.guard'
 
 const router = createRouter({
 	history: createWebHistory(),
@@ -18,6 +19,9 @@ const router = createRouter({
 		}
 	},
 })
+
+// Add authentication guard
+router.beforeEach(authGuard)
 
 export {
 	router,
