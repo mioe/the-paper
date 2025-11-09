@@ -31,7 +31,7 @@ async function handleSignIn() {
 </script>
 
 <template>
-	<main class="mx-auto p-4 flex flex-1 flex-col gap-4 max-w-[300px] w-full">
+	<main class="m-auto px-4 pb-12 pt-4 flex flex-col gap-4 max-w-[300px] w-full">
 		<article class="flex flex-col gap-4">
 			<h1 class="text-[2rem]">
 				the-paper
@@ -73,9 +73,12 @@ async function handleSignIn() {
 				<button
 					type="submit"
 					:disabled="!form.idle"
-					class="px-3 py-2 border rounded-md"
+					class="px-3 py-2 text-center border rounded-md flex gap-1.5 items-center justify-center"
 				>
-					{{ !form.idle ? 'Signing in...' : 'Sign In' }}
+					<span>
+						{{ !form.idle ? 'Signing in...' : 'Sign In' }}
+					</span>
+					<div class="i-mi:carbon-return h-4 w-4" />
 				</button>
 			</form>
 		</article>
