@@ -31,55 +31,53 @@ async function handleSignIn() {
 </script>
 
 <template>
-	<div class="flex min-h-screen items-center justify-center">
-		<div class="p-8 max-w-md w-full space-y-8">
-			<div>
-				<h2 class="text-3xl font-bold text-center">
-					Sign In
-				</h2>
-			</div>
+	<main class="mx-auto p-4 flex flex-1 flex-col gap-4 max-w-[300px] w-full">
+		<article class="flex flex-col gap-4">
+			<h1 class="text-[2rem]">
+				the-paper
+			</h1>
 
-			<form class="mt-8 space-y-6" @submit.prevent="handleSignIn">
-				<div class="space-y-4">
-					<div>
-						<label for="email" class="text-sm font-medium block">
-							Email
-						</label>
-						<input
-							id="email"
-							v-model="form.email"
-							type="email"
-							required
-							class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full block"
-						/>
-					</div>
-
-					<div>
-						<label for="password" class="text-sm font-medium block">
-							Password
-						</label>
-						<input
-							id="password"
-							v-model="form.password"
-							type="password"
-							required
-							class="mt-1 px-3 py-2 border border-gray-300 rounded-md w-full block"
-						/>
-					</div>
+			<form class="flex flex-col gap-3" @submit.prevent="handleSignIn">
+				<div>
+					<label for="email" class="text-sm font-medium">
+						Email
+					</label>
+					<input
+						id="email"
+						v-model="form.email"
+						type="email"
+						required
+						class="mt-1 px-3 py-2 border rounded-md w-full"
+					/>
 				</div>
 
-				<div v-if="form.err" class="text-sm text-red-600">
-					{{ form.err }}
+				<div>
+					<label for="password" class="text-sm font-medium">
+						Password
+					</label>
+					<input
+						id="password"
+						v-model="form.password"
+						type="password"
+						required
+						class="mt-1 px-3 py-2 border rounded-md w-full"
+					/>
 				</div>
+
+				<section class="flex flex-col min-h-5">
+					<div v-if="form.err" class="text-sm text-red-600">
+						{{ form.err }}
+					</div>
+				</section>
 
 				<button
 					type="submit"
 					:disabled="!form.idle"
-					class="text-white px-4 py-2 border border-transparent rounded-md bg-blue-600 w-full hover:bg-blue-700 disabled:opacity-50"
+					class="px-3 py-2 border rounded-md"
 				>
 					{{ !form.idle ? 'Signing in...' : 'Sign In' }}
 				</button>
 			</form>
-		</div>
-	</div>
+		</article>
+	</main>
 </template>
