@@ -19,7 +19,7 @@ const COLLECTION_NAME = 'tag'
 /**
  * Create a new tag
  */
-export async function createTag(data: Omit<Tag, 'id' | 'created' | 'updated'>): Promise<RecordModel> {
+export async function createTag(data: Omit<Tag, 'id' | 'created' | 'updated'>) {
 	const pb = usePb()
 	return await pb.collection(COLLECTION_NAME).create(data)
 }
@@ -27,7 +27,7 @@ export async function createTag(data: Omit<Tag, 'id' | 'created' | 'updated'>): 
 /**
  * Get a tag by ID
  */
-export async function getTag(id: string): Promise<RecordModel> {
+export async function getTag(id: string) {
 	const pb = usePb()
 	return await pb.collection(COLLECTION_NAME).getOne(id)
 }
@@ -60,7 +60,7 @@ export async function getAllTags(filter?: string, sort?: string) {
 export async function updateTag(
 	id: string,
 	data: Partial<Omit<Tag, 'id' | 'created' | 'updated'>>,
-): Promise<RecordModel> {
+) {
 	const pb = usePb()
 	return await pb.collection(COLLECTION_NAME).update(id, data)
 }
@@ -68,7 +68,7 @@ export async function updateTag(
 /**
  * Delete a tag by ID
  */
-export async function deleteTag(id: string): Promise<boolean> {
+export async function deleteTag(id: string) {
 	const pb = usePb()
 	return await pb.collection(COLLECTION_NAME).delete(id)
 }
@@ -79,7 +79,7 @@ export async function deleteTag(id: string): Promise<boolean> {
 export async function subscribeToAllTags(
 	callback: (data: RecordSubscription<RecordModel>) => void,
 	options?: TagSubscriptionOptions,
-): Promise<() => void> {
+) {
 	const pb = usePb()
 	await pb.collection(COLLECTION_NAME).subscribe('*', callback, options)
 	return () => unsubscribeFromTags('*')
@@ -92,7 +92,7 @@ export async function subscribeToTag(
 	id: string,
 	callback: (data: RecordSubscription<RecordModel>) => void,
 	options?: TagSubscriptionOptions,
-): Promise<() => void> {
+) {
 	const pb = usePb()
 	await pb.collection(COLLECTION_NAME).subscribe(id, callback, options)
 	return () => unsubscribeFromTags(id)
@@ -101,7 +101,7 @@ export async function subscribeToTag(
 /**
  * Unsubscribe from specific tag record or topic
  */
-export function unsubscribeFromTags(recordIdOrTopic?: string): void {
+export function unsubscribeFromTags(recordIdOrTopic?: string) {
 	const pb = usePb()
 	pb.collection(COLLECTION_NAME).unsubscribe(recordIdOrTopic)
 }
@@ -109,7 +109,7 @@ export function unsubscribeFromTags(recordIdOrTopic?: string): void {
 /**
  * Unsubscribe from all tag subscriptions
  */
-export function unsubscribeFromAllTags(): void {
+export function unsubscribeFromAllTags() {
 	const pb = usePb()
 	pb.collection(COLLECTION_NAME).unsubscribe()
 }
