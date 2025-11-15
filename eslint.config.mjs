@@ -31,9 +31,9 @@ export default antfu({
 		quotes: 'single',
 	},
 	ignores: [
-		'**/migrations/*',
-		'**/.pocketbase/**/*',
+		'**/.axum/**/*',
 		'**/.claude/**/*',
+		'**/.pocketbase/**/*',
 	],
 }, {
 	rules: {

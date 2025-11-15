@@ -49,7 +49,7 @@ async function handleSignIn() {
 						v-model="form.email"
 						type="email"
 						required
-						class="inpt mt-1"
+						class="mt-1 inpt"
 					/>
 				</div>
 
@@ -62,7 +62,7 @@ async function handleSignIn() {
 						v-model="form.password"
 						type="password"
 						required
-						class="inpt mt-1"
+						class="mt-1 inpt"
 					/>
 				</div>
 

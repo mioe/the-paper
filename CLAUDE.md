@@ -5,6 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Project Overview
 
 The Paper is a full-stack application combining a Vue 3 frontend with two backend services:
+
 - **PocketBase** (SQLite backend) - Primary database and authentication
 - **Axum API** (Rust) - Metadata scraping service for URLs
 
@@ -73,6 +74,7 @@ cd .axum && cargo run &
 The codebase follows a consistent pattern for Pinia stores with PocketBase integration:
 
 **Store Structure** (see `src/stores/tag.ts` as reference):
+
 - Reactive state with refs (tags array, loading states, errors)
 - Computed getters for derived state
 - CRUD actions (fetchAll, fetchOne, create, update, remove)
@@ -80,6 +82,7 @@ The codebase follows a consistent pattern for Pinia stores with PocketBase integ
 - HMR support for hot module replacement
 
 **Service Layer** (see `src/services/tag.service.ts` as reference):
+
 - Pure functions for PocketBase API calls
 - Type-safe CRUD operations
 - WebSocket subscription helpers
@@ -89,12 +92,14 @@ The codebase follows a consistent pattern for Pinia stores with PocketBase integ
 ### Backend Services
 
 **PocketBase**: SQLite-based backend providing:
+
 - Collections/tables with schema
 - Authentication system
 - Real-time subscriptions via WebSocket
 - Admin UI at `http://localhost:8090/_/`
 
 **Axum API** (`.axum/main.rs`): Rust service that:
+
 - Scrapes URL metadata (title, description, favicon, preview image)
 - Endpoint: `GET /api/metadata?url=<url>`
 - Uses functional programming patterns with pure functions
@@ -144,10 +149,12 @@ src/
 **Path Alias**: `~/` maps to `src/` directory for cleaner imports.
 
 **Type Safety**: The project uses TypeScript with strict mode. Auto-generated types are in:
+
 - `src/auto-imports.d.ts` - Auto-imported APIs
 - `src/typed-router.d.ts` - File-based routes
 
 **UnoCSS Shortcuts**:
+
 - `body-primary` - Primary background and text colors with dark mode support
 - `link` - Blue underlined links
 - Custom icons from `src/assets/icons/` available as `i-mi-*`
@@ -165,6 +172,7 @@ When creating a new collection/feature similar to tags:
 ## Testing Routes
 
 Since the app uses file-based routing, test routes by:
+
 1. Creating files in `src/pages/`
 2. Routes are automatically available at the file path
 3. Check `src/typed-router.d.ts` for available route names
