@@ -78,7 +78,7 @@ async function handleSignIn() {
 					<span>
 						{{ !form.idle ? 'Signing in...' : 'Sign In' }}
 					</span>
-					<div class="i-mi:carbon-return h-4 w-4" />
+					<div v-if="form.idle" class="i-mi:carbon-return h-4 w-4" />
 				</button>
 			</form>
 		</article>

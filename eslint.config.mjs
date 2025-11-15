@@ -45,7 +45,7 @@ export default antfu({
 		}],
 		'unicorn/filename-case': ['error', {
 			case: 'kebabCase',
-			ignore: ['README.md', 'Cargo.toml'],
+			ignore: ['README.md', 'Cargo.toml', 'CLAUDE.md'],
 		}],
 	},
 })
