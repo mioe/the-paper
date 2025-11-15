@@ -8,7 +8,6 @@ use axum::{
 use reqwest::Client;
 use scraper::{Html, Selector};
 use serde::{Deserialize, Serialize};
-use std::collections::HashMap;
 use tower_http::cors::{Any, CorsLayer};
 use url::Url;
 
@@ -16,8 +15,8 @@ use url::Url;
 struct Metadata {
 	title: Option<String>,
 	description: Option<String>,
-	favicon: Option<String>,
-	preview_image: Option<String>,
+	favicons: Vec<String>,
+	preview_images: Vec<String>,
 	url: String,
 }
 
@@ -25,7 +24,6 @@ struct Metadata {
 enum AppError {
 	InvalidUrl,
 	FetchError,
-	ParseError,
 }
 
 impl IntoResponse for AppError {
@@ -33,7 +31,6 @@ impl IntoResponse for AppError {
 		let (status, message) = match self {
 			AppError::InvalidUrl => (StatusCode::BAD_REQUEST, "Invalid URL"),
 			AppError::FetchError => (StatusCode::BAD_GATEWAY, "Failed to fetch URL"),
-			AppError::ParseError => (StatusCode::INTERNAL_SERVER_ERROR, "Failed to parse HTML"),
 		};
 		(status, message).into_response()
 	}
@@ -60,6 +57,19 @@ fn extract_attr(document: &Html, selector: &str, attr: &str) -> Option<String> {
 		.map(String::from)
 }
 
+fn extract_all_attrs(document: &Html, selector: &str, attr: &str) -> Vec<String> {
+	Selector::parse(selector)
+		.ok()
+		.map(|sel| {
+			document
+				.select(&sel)
+				.filter_map(|e| e.value().attr(attr))
+				.map(String::from)
+				.collect()
+		})
+		.unwrap_or_default()
+}
+
 fn extract_title(document: &Html) -> Option<String> {
 	extract_text(document, "title")
 		.or_else(|| extract_attr(document, r#"meta[property="og:title"]"#, "content"))
@@ -71,18 +81,53 @@ fn extract_description(document: &Html) -> Option<String> {
 		.or_else(|| extract_attr(document, r#"meta[name="twitter:description"]"#, "content"))
 }
 
-fn extract_favicon(document: &Html, base_url: &Url) -> Option<String> {
-	let favicon_href = extract_attr(document, r#"link[rel~="icon"]"#, "href")
-		.or_else(|| extract_attr(document, r#"link[rel="shortcut icon"]"#, "href"))
-		.or_else(|| Some("/favicon.ico".to_string()));
+fn extract_all_favicons(document: &Html, base_url: &Url) -> Vec<String> {
+	let mut favicons = Vec::new();
 
-	favicon_href.and_then(|href| resolve_url(base_url, &href))
+	// Standard icon links
+	favicons.extend(extract_all_attrs(document, r#"link[rel~="icon"]"#, "href"));
+	favicons.extend(extract_all_attrs(document, r#"link[rel="shortcut icon"]"#, "href"));
+
+	// Apple touch icons
+	favicons.extend(extract_all_attrs(document, r#"link[rel="apple-touch-icon"]"#, "href"));
+	favicons.extend(extract_all_attrs(document, r#"link[rel="apple-touch-icon-precomposed"]"#, "href"));
+
+	// Microsoft tiles
+	favicons.extend(extract_all_attrs(document, r#"meta[name="msapplication-TileImage"]"#, "content"));
+
+	// Default favicon.ico if no icons found
+	if favicons.is_empty() {
+		favicons.push("/favicon.ico".to_string());
+	}
+
+	// Resolve all URLs and deduplicate
+	favicons
+		.into_iter()
+		.filter_map(|href| resolve_url(base_url, &href))
+		.collect::<std::collections::HashSet<_>>()
+		.into_iter()
+		.collect()
 }
 
-fn extract_preview_image(document: &Html, base_url: &Url) -> Option<String> {
-	extract_attr(document, r#"meta[property="og:image"]"#, "content")
-		.or_else(|| extract_attr(document, r#"meta[name="twitter:image"]"#, "content"))
-		.and_then(|href| resolve_url(base_url, &href))
+fn extract_all_preview_images(document: &Html, base_url: &Url) -> Vec<String> {
+	let mut images = Vec::new();
+
+	// Open Graph images
+	images.extend(extract_all_attrs(document, r#"meta[property="og:image"]"#, "content"));
+	images.extend(extract_all_attrs(document, r#"meta[property="og:image:url"]"#, "content"));
+	images.extend(extract_all_attrs(document, r#"meta[property="og:image:secure_url"]"#, "content"));
+
+	// Twitter images
+	images.extend(extract_all_attrs(document, r#"meta[name="twitter:image"]"#, "content"));
+	images.extend(extract_all_attrs(document, r#"meta[name="twitter:image:src"]"#, "content"));
+
+	// Resolve all URLs and deduplicate
+	images
+		.into_iter()
+		.filter_map(|href| resolve_url(base_url, &href))
+		.collect::<std::collections::HashSet<_>>()
+		.into_iter()
+		.collect()
 }
 
 fn resolve_url(base: &Url, href: &str) -> Option<String> {
@@ -106,8 +151,8 @@ fn parse_metadata(html: &str, url: &Url) -> Result<Metadata, AppError> {
 	Ok(Metadata {
 		title: extract_title(&document),
 		description: extract_description(&document),
-		favicon: extract_favicon(&document, url),
-		preview_image: extract_preview_image(&document, url),
+		favicons: extract_all_favicons(&document, url),
+		preview_images: extract_all_preview_images(&document, url),
 		url: url.to_string(),
 	})
 }
