@@ -83,7 +83,6 @@ The codebase follows a consistent pattern for Pinia stores with PocketBase integ
 - Pure functions for PocketBase API calls
 - Type-safe CRUD operations
 - WebSocket subscription helpers
-- Detailed documentation in `src/services/README.md`
 
 **WebSocket Pattern**: Stores subscribe to PocketBase real-time updates via `pb.collection().subscribe()`. The subscription handler automatically updates the local state on create/update/delete events. Always unsubscribe in `onUnmounted` or store cleanup.
 
@@ -111,16 +110,19 @@ src/
 ├── main.ts                   # App entry point
 ├── pages/                    # File-based routes
 │   ├── index.vue
-│   └── sign-in.vue
+│   ├── sign-in.vue
+│   └── bookmarks.vue
 ├── components/               # Vue components
 │   ├── app/                  # App-level components
+│   ├── bookmark/             # Bookmark management components
 │   └── tag/                  # Tag management components
 ├── stores/                   # Pinia stores
 │   ├── app.ts               # Global app state (theme, etc.)
+│   ├── bookmark.ts          # Bookmark management store
 │   └── tag.ts               # Tag management store
 ├── services/                 # API service layer
-│   ├── tag.service.ts       # Tag CRUD & subscriptions
-│   └── README.md            # Service documentation
+│   ├── bookmark.service.ts  # Bookmark CRUD & subscriptions
+│   └── tag.service.ts       # Tag CRUD & subscriptions
 ├── composables/              # Reusable composables
 │   └── use-pb.ts            # PocketBase singleton
 ├── guards/                   # Route guards
