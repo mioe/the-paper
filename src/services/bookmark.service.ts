@@ -20,7 +20,7 @@ export interface BookmarkMetadata {
 	url: string
 }
 
-const COLLECTION = 'bookmarks'
+const COLLECTION = 'bookmark'
 
 /**
  * Fetch metadata from Axum API
