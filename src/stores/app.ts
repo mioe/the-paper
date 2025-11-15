@@ -3,8 +3,6 @@ import { acceptHMRUpdate, defineStore } from 'pinia'
 import { APP_PREFIX } from '~/const'
 
 export const useAppStore = defineStore('app', () => {
-	usePb()
-
 	// > theme
 	const theme = useLocalStorage<'auto' | 'dark' | 'light'>(`${APP_PREFIX}:theme`, 'auto')
 	const isPreferredDark = usePreferredDark()

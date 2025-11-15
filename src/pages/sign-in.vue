@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import Btn from '~/components/_common/btn.vue'
+
 const router = useRouter()
 const route = useRoute()
 const pb = usePb()
@@ -70,16 +72,15 @@ async function handleSignIn() {
 					</div>
 				</section>
 
-				<button
+				<Btn
 					type="submit"
 					:disabled="!form.idle"
-					class="px-3 py-2 text-center border rounded-md flex gap-1.5 items-center justify-center"
 				>
 					<span>
 						{{ !form.idle ? 'Signing in...' : 'Sign In' }}
 					</span>
 					<div v-if="form.idle" class="i-mi:carbon-return h-4 w-4" />
-				</button>
+				</Btn>
 			</form>
 		</article>
 	</main>
