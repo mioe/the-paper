@@ -9,7 +9,7 @@ defineProps<{
 	<button
 		:type
 		:disabled
-		class="px-3 py-2 text-center border rounded-md flex gap-1.5 items-center justify-center"
+		class="btn-shadow px-3 py-2 text-center border-2 rounded-md flex gap-1.5 items-center justify-center"
 	>
 		<slot />
 	</button>

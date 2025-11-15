@@ -11,7 +11,7 @@ export function authGuard(
 	const pb = usePb()
 
 	// List of public routes that don't require authentication
-	const publicRoutes = ['/sign-in']
+	const publicRoutes = ['/sign-in', '/playground']
 
 	// Check if the route is public
 	const isPublicRoute = publicRoutes.some(route => to.path.startsWith(route))

@@ -33,6 +33,7 @@ export default antfu({
 	ignores: [
 		'**/migrations/*',
 		'**/.pocketbase/**/*',
+		'**/.claude/**/*',
 	],
 }, {
 	rules: {
