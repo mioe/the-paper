@@ -22,9 +22,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Rust
-.axum/target/
-.axum/Cargo.lock
-**/*.rs.bk
-**/*.pdb
