@@ -11,8 +11,6 @@ import {
 	getTag,
 	subscribeToAllTags,
 	subscribeToTag,
-
-	unsubscribeFromAllTags,
 	updateTag,
 } from '~/services/tag.service'
 

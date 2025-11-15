@@ -30,6 +30,13 @@ declare module 'vue-router/auto-routes' {
       Record<never, never>,
       | never
     >,
+    '/bookmarks': RouteRecordInfo<
+      '/bookmarks',
+      '/bookmarks',
+      Record<never, never>,
+      Record<never, never>,
+      | never
+    >,
     '/sign-in': RouteRecordInfo<
       '/sign-in',
       '/sign-in',
@@ -53,6 +60,12 @@ declare module 'vue-router/auto-routes' {
     'src/pages/index.vue': {
       routes:
         | '/'
+      views:
+        | never
+    }
+    'src/pages/bookmarks.vue': {
+      routes:
+        | '/bookmarks'
       views:
         | never
     }
