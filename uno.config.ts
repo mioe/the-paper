@@ -7,13 +7,17 @@ import {
 
 export default defineConfig({
 	shortcuts: [
-		['body-primary', 'bg-[#f7f7f2f5] dark:bg-[hsl(218,_13%,_7.5%)] text-gray-700 dark:text-gray-300'],
+		['bg-primary', 'bg-[#f7f7f2f5] dark:bg-[hsl(218,_13%,_7.5%)]'],
 		['link', 'text-blue underline underline-dashed'],
 		['inpt', 'px-3 py-2 border-2 rounded-md w-full'],
 	],
 	rules: [
 		['scrolling-touch', { '-webkit-overflow-scrolling': 'touch' }],
-		['btn-shadow', { 'box-shadow': '2px 4px 0 0 currentColor' }],
+		['btn-shadow', { 'box-shadow': '.15rem .20rem 0 0 currentColor' }],
+		['bg-lines', {
+			'background-image': 'linear-gradient(45deg, color-mix(in oklch, currentColor var(--line-op, 100%), transparent) 12.5%, transparent 12.5%, transparent 50%, color-mix(in oklch, currentColor var(--line-op, 100%), transparent) 50%, color-mix(in oklch, currentColor var(--line-op, 100%), transparent) 62.5%, transparent 62.5%, transparent 100%)',
+			'background-size': '.6rem .6rem',
+		}],
 	],
 	presets: [
 		presetWind4({

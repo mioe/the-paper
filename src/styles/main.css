@@ -4,7 +4,7 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-optical-sizing: auto;
-	font-size: 0.775rem;
+	font-size: 1rem;
 	font-family: 'iA Writer Quattro', system-ui, sans-serif;
 	font-weight: 400;
 	line-height: 1.25;
@@ -16,12 +16,6 @@
 	--safe-area-right: env(safe-area-inset-right);
 	--safe-area-bottom: env(safe-area-inset-bottom);
 	--safe-area-left: env(safe-area-inset-left);
-}
-
-@media (min-width: 600px) {
-	:root {
-		font-size: 1rem;
-	}
 }
 
 h1,

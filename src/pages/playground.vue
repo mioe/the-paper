@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Btn from '~/components/_playground/pay.btn.vue'
+import AppNav from '~/components/_playground/play.app.nav.vue'
+import Btn from '~/components/_playground/play.btn.vue'
 import Theme from '~/components/_playground/play.theme.vue'
 </script>
 
@@ -8,5 +9,6 @@ import Theme from '~/components/_playground/play.theme.vue'
 		<h1>Playground</h1>
 		<Btn />
 		<Theme />
+		<AppNav />
 	</main>
 </template>
