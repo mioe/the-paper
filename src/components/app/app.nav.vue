@@ -16,7 +16,7 @@ defineEmits<{
 			<button class="p-1" @click="$emit('bookmark')">
 				<div class="i-mi:carbon-bookmark h-6 w-6 aspect-square" />
 			</button>
-			<button class="p-1" @click="$emit('search')">
+			<button class="p-1 lg:hidden" @click="$emit('search')">
 				<div class="i-mi:carbon-search h-6 w-6 aspect-square" />
 			</button>
 

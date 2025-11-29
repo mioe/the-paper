@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import AppNav from '~/components/_playground/play.app.nav.vue'
 import Btn from '~/components/_playground/play.btn.vue'
+import Line from '~/components/_playground/play.line.vue'
 import Theme from '~/components/_playground/play.theme.vue'
 </script>
 
@@ -10,5 +11,6 @@ import Theme from '~/components/_playground/play.theme.vue'
 		<Btn />
 		<Theme />
 		<AppNav />
+		<Line />
 	</main>
 </template>

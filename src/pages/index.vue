@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import TagManager from '~/components/tag/tag-manager.vue'
+import DefaultLayout from '~/layouts/default.vue'
 </script>
 
 <template>
-	<div>
-		<TagManager />
-	</div>
+	<DefaultLayout>
+		<section class="h-[9000px]">
+			mis
+		</section>
+	</DefaultLayout>
 </template>
