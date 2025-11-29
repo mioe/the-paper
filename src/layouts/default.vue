@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import Line from '~/components/_common/line.vue'
+import AppFooter from '~/components/app/app.footer.vue'
+import AppMouseHunter from '~/components/app/app.mouse-hunter.vue'
 import AppNav from '~/components/app/app.nav.vue'
 </script>
 
@@ -17,7 +19,10 @@ import AppNav from '~/components/app/app.nav.vue'
 			<div class="p-4 flex flex-1 flex-col gap-4">
 				<h1>the-paper <b class="op-20">v0</b></h1>
 				<AppNav />
+				<AppFooter class="mt-auto" />
 			</div>
 		</div>
 	</main>
+
+	<AppMouseHunter />
 </template>
