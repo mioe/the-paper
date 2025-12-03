@@ -5,7 +5,7 @@ import DefaultLayout from '~/layouts/default.vue'
 <template>
 	<DefaultLayout>
 		<section class="h-[9000px]">
-			mis
+			misss
 		</section>
 	</DefaultLayout>
 </template>

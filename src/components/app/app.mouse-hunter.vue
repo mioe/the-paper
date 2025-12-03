@@ -3,10 +3,17 @@ import { useElementBounding, useElementByPoint, useEventListener, useMouse } fro
 
 type CSSProp = Record<string, string | number>
 
+const appStore = useAppStore()
 const { x, y } = useMouse({ type: 'client' })
 const { element } = useElementByPoint({ x, y })
 const bounding = reactive(useElementBounding(element))
 useEventListener('scroll', bounding.update, true)
+
+// Update store with mouse coordinates
+watch([x, y], ([newX, newY]) => {
+	appStore.mouse.x = newX
+	appStore.mouse.y = newY
+})
 
 const pointStyles = computed<CSSProp>(() => ({
 	position: 'fixed',
@@ -20,6 +27,6 @@ const pointStyles = computed<CSSProp>(() => ({
 
 <template>
 	<Teleport to="body">
-		<div class="rounded-full bg-red h-2 w-2" :style="pointStyles" />
+		<div v-if="false" class="rounded-full bg-red h-2 w-2" :style="pointStyles" />
 	</Teleport>
 </template>

@@ -24,9 +24,17 @@ export const useAppStore = defineStore('app', () => {
 	})
 	// < theme
 
+	// > mouse
+	const mouse = reactive({
+		x: 0,
+		y: 0,
+	})
+	// < mouse
+
 	return {
 		theme,
 		isDark,
+		mouse,
 	}
 })
 
