@@ -8,10 +8,11 @@ import {
 export default defineConfig({
 	shortcuts: [
 		['bg-primary', 'bg-[#f7f7f2f5] dark:bg-[hsl(218,_13%,_7.5%)]'],
-		['inpt', 'px-3 py-2 border-2 rounded-md w-full'],
+		['inpt', 'px-3 py-2 border-2 w-full'],
 		['link', 'text-blue underline underline-dashed'],
 	],
 	rules: [
+		['anime', { transition: 'var(--transition)' }],
 		['scrolling-touch', { '-webkit-overflow-scrolling': 'touch' }],
 		['scrollbar-stable', { 'scrollbar-gutter': 'stable' }],
 		['btn-shadow', { 'box-shadow': '.15rem .20rem 0 0 currentColor' }],

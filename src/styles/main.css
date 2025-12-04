@@ -1,21 +1,21 @@
 :root {
-	font-synthesis: none;
-	text-rendering: optimizeLegibility;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-optical-sizing: auto;
-	font-size: 1rem;
-	font-family: 'iA Writer Quattro', system-ui, sans-serif;
-	font-weight: 400;
-	line-height: 1.25;
-	letter-spacing: -10%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-optical-sizing: auto;
+  font-size: 1rem;
+  font-family: "iA Writer Quattro", system-ui, sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -10%;
 
-	--transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1);
+  --transition: 0.25s cubic-bezier(0.175, 0.885, 0.32, 1);
 
-	--safe-area-top: env(safe-area-inset-top);
-	--safe-area-right: env(safe-area-inset-right);
-	--safe-area-bottom: env(safe-area-inset-bottom);
-	--safe-area-left: env(safe-area-inset-left);
+  --safe-area-top: env(safe-area-inset-top);
+  --safe-area-right: env(safe-area-inset-right);
+  --safe-area-bottom: env(safe-area-inset-bottom);
+  --safe-area-left: env(safe-area-inset-left);
 }
 
 h1,
@@ -24,10 +24,10 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 800;
-	color: var(--color-accent-blue);
-	text-wrap: balance;
-	line-height: 1.35;
+  font-weight: 800;
+  color: var(--color-accent-blue);
+  text-wrap: balance;
+  line-height: 1.35;
 }
 
 :root.dark h1,
@@ -36,29 +36,29 @@ h6 {
 :root.dark h4,
 :root.dark h5,
 :root.dark h6 {
-	color: var(--color-blue-300);
+  color: var(--color-blue-300);
 }
 
 h1 {
-	font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 h2 {
-	font-size: 1.125rem;
+  font-size: 1.125rem;
 }
 
 h3,
 h4,
 h5,
 h6 {
-	font-size: 1rem;
+  font-size: 1rem;
 }
 
 button:not(:disabled) {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 button:disabled {
-	cursor: not-allowed;
-	opacity: 0.85;
+  cursor: not-allowed;
+  opacity: 0.85;
 }
