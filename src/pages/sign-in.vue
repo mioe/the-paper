@@ -75,6 +75,7 @@ async function handleSignIn() {
 				<Btn
 					type="submit"
 					:disabled="!form.idle"
+					tabindex="0"
 				>
 					<span>
 						{{ !form.idle ? 'Signing in...' : 'Sign In' }}

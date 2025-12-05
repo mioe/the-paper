@@ -167,8 +167,8 @@ defineExpose({
 				/>
 
 				<div
-					class="sheet-body bg-white flex flex-shrink-0 flex-col shadow-lg overflow-auto" :class="[
-						!sheet.full ? 'h-[var(--h)] rounded-t-[10px]' : 'h-[calc(100%-24px)] rounded-t-[18px]',
+					class="sheet-body border-t border-black bg-primary flex flex-shrink-0 flex-col shadow-lg overflow-auto dark:border-white" :class="[
+						!sheet.full ? 'h-[var(--h)]' : 'h-[calc(100%-24px)]',
 					]"
 					:style="{
 						'--h': `${sheet.bodyHeight}svh`,
@@ -184,14 +184,15 @@ defineExpose({
 								: 'min-h-[calc(100svh-24px)]',
 						]"
 					>
-						<header class="p-[5px] flex flex-shrink-0 w-full items-center justify-center">
+						<header class="p-2 flex flex-shrink-0 w-full items-center top-0 justify-center sticky">
 							<button
 								v-if="showDragIndicator"
-								class="rounded-full bg-[#c5c5c7] h-[5px] w-[36px]"
+								class="text-orange border-1.5 border-orange bg-orange bg-op-20 h-4 w-12 bg-lines"
+								tabindex="0"
 								@click="handleDragIndicator"
 							/>
 						</header>
-						<div class="flex flex-1 flex-col gap-[40px] items-center justify-center">
+						<div class="flex flex-1 flex-col items-center justify-center">
 							<slot />
 						</div>
 					</div>

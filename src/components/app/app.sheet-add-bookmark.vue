@@ -5,10 +5,6 @@ import Sheet from '~/components/_common/sheet.vue'
 import { fetchUrlMetadata } from '~/services/bookmark.service'
 import { useBookmarkStore } from '~/stores/bookmark'
 
-const emit = defineEmits<{
-	created: [id: string]
-}>()
-
 const bookmarkStore = useBookmarkStore()
 const pb = usePb()
 const { t } = useI18n()
@@ -17,6 +13,7 @@ const sheetRef = ref<InstanceType<typeof Sheet> | null>(null)
 
 // Step control
 const step = ref<'url' | 'form'>('url')
+const detents = computed<('medium' | 'large')[]>(() => step.value === 'url' ? ['medium'] : ['large'])
 
 // Form data
 const url = ref('')
@@ -72,6 +69,7 @@ async function handleFetchMetadata() {
 
 		// Move to form step
 		step.value = 'form'
+		sheetRef.value?.open()
 	}
 	catch (error) {
 		console.error('Error fetching metadata:', error)
@@ -154,7 +152,6 @@ async function handleSave() {
 			await uploadFile(customPreviewImage.value, newBookmark.id, 'preview_image')
 		}
 
-		emit('created', newBookmark.id)
 		close()
 	}
 	catch (error) {
@@ -187,7 +184,7 @@ defineExpose({
 </script>
 
 <template>
-	<Sheet ref="sheetRef" :detents="['medium', 'large']">
+	<Sheet ref="sheetRef" :detents drag-indicator="visible">
 		<div class="px-4 pb-4 max-w-md w-full">
 			<!-- Step 1: URL Input -->
 			<div v-if="step === 'url'" class="flex flex-col gap-4">
