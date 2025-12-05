@@ -3,6 +3,7 @@ import Line from '~/components/_common/line.vue'
 import Portal from '~/components/_common/portal.vue'
 import SafeArea from '~/components/_common/safe-area.vue'
 import AppMouseHunter from '~/components/app/app.mouse-hunter.vue'
+import SheetAddBookmark from '~/components/bookmark/sheet-add-bookmark.vue'
 
 const appStore = useAppStore()
 const router = useRouter()
@@ -10,10 +11,15 @@ const pb = usePb()
 const { locale } = useI18n()
 
 const userName = ref(pb.authStore.record?.name)
+const sheetAddBookmarkRef = ref<InstanceType<typeof SheetAddBookmark> | null>(null)
 
 function handleLogout() {
 	pb.authStore.clear()
 	router.replace('/sign-in')
+}
+
+function openAddBookmark() {
+	sheetAddBookmarkRef.value?.open()
 }
 </script>
 
@@ -99,9 +105,11 @@ function handleLogout() {
 	<AppMouseHunter />
 
 	<footer class="p-1.5 border-2 inline-flex translate-x-[-50%] transform bottom-4 left-[50%] fixed btn-shadow bg-lines" :style="{ '--line-op': '50%' }">
-		<button class="py-2 pl-2 pr-4 border-2 bg-primary flex gap-2 items-center">
+		<button class="py-2 pl-2 pr-4 border-2 bg-primary flex gap-2 items-center" @click="openAddBookmark">
 			<div class="i-mi:carbon-add-large op-50 h-6 w-6 aspect-square" />
 			<span>{{ $t('Add bookmark') }}</span>
 		</button>
 	</footer>
+
+	<SheetAddBookmark ref="sheetAddBookmarkRef" />
 </template>
