@@ -23,7 +23,7 @@ function handleLogout() {
 			<div class="h-full w-full overflow-y-auto">
 				<div class="flex flex-col min-h-svh">
 					<span>#todo</span>
-					<SafeArea />
+					<SafeArea class="lg:hidden" />
 				</div>
 			</div>
 
@@ -90,7 +90,7 @@ function handleLogout() {
 							</p>
 						</footer>
 					</div>
-					<SafeArea />
+					<SafeArea class="lg:hidden" />
 				</div>
 			</div>
 		</div>
