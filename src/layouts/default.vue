@@ -3,9 +3,18 @@ import Line from '~/components/_common/line.vue'
 import Portal from '~/components/_common/portal.vue'
 import SafeArea from '~/components/_common/safe-area.vue'
 import AppMouseHunter from '~/components/app/app.mouse-hunter.vue'
-import AppNav from '~/components/app/app.nav.vue'
 
 const appStore = useAppStore()
+const router = useRouter()
+const pb = usePb()
+const { locale } = useI18n()
+
+const userName = ref(pb.authStore.record?.name)
+
+function handleLogout() {
+	pb.authStore.clear()
+	router.replace('/sign-in')
+}
 </script>
 
 <template>
@@ -41,9 +50,45 @@ const appStore = useAppStore()
 
 			<div class="h-full w-full overflow-y-auto">
 				<div class="flex flex-col min-h-svh">
-					<div class="p-4 flex flex-col gap-4">
-						<h1>the-paper <b class="op-20">v0</b></h1>
-						<AppNav />
+					<div class="flex flex-1 flex-col">
+						<h1 class="p-4">
+							the-paper <b class="op-20">v0</b>
+						</h1>
+						<div class="border-t border-black border-op-20 flex flex-1 dark:border-white">
+							<Line class="flex-1 flex-shrink-0" />
+						</div>
+						<footer class="mt-auto p-4 border-t border-black border-op-20 flex flex-col gap-2 dark:border-white">
+							<p class="inline-flex flex-wrap gap-4">
+								<span>{{ $t('Language') }}:</span>
+								<button class="link" :class="{ 'text-orange': locale === 'en' }" @click="locale = 'en'">
+									en
+								</button>
+								<button class="link" :class="{ 'text-orange': locale === 'ru' }" @click="locale = 'ru'">
+									ru
+								</button>
+							</p>
+
+							<p class="inline-flex flex-wrap gap-4">
+								<span>{{ $t('Theme') }}:</span>
+								<button class="link" :class="{ 'text-orange': appStore.theme === 'light' }" @click="appStore.theme = 'light'">
+									<div class="i-mi:carbon-sun h-5 w-5" />
+								</button>
+								<button class="link" :class="{ 'text-orange': appStore.theme === 'dark' }" @click="appStore.theme = 'dark'">
+									<div class="i-mi:carbon-moon h-5 w-5" />
+								</button>
+								<button class="link" :class="{ 'text-orange': appStore.theme === 'auto' }" @click="appStore.theme = 'auto'">
+									<div class="i-mi:carbon-application-web h-5 w-5" />
+								</button>
+							</p>
+
+							<p class="inline-flex flex-wrap gap-x-4 gap-y-1">
+								<span>{{ $t('Welcome back') }}, {{ userName }}</span>
+								<span>·</span>
+								<button class="link lowercase" @click="handleLogout">
+									{{ $t('Logout') }}
+								</button>
+							</p>
+						</footer>
 					</div>
 					<SafeArea />
 				</div>
