@@ -49,6 +49,8 @@ const drag = reactive({
 
 function dragStart(ev: TouchEvent) {
 	drag.idle = false
+	// eslint-disable-next-line ts/ban-ts-comment
+	// @ts-expect-error
 	drag.initPosY = ev.touches?.[0].pageY
 	drag.initSheetBodyHeight = 0 + sheet.bodyHeight
 }
@@ -57,6 +59,8 @@ function dragging(ev: TouchEvent) {
 	if (drag.idle)
 		return
 	sheet.full = false
+	// eslint-disable-next-line ts/ban-ts-comment
+	// @ts-expect-error
 	const delta = drag.initPosY - ev.touches?.[0].pageY
 
 	if (IS_MANY_DETENTS.value || getInitDetent() === LARGE_DETENT) {
