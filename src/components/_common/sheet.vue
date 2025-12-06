@@ -4,6 +4,10 @@ const { detents = ['large'], dragIndicator = 'automatic' } = defineProps<{
 	dragIndicator?: 'automatic' | 'hidden' | 'visible'
 }>()
 
+const emit = defineEmits<{
+	close: []
+}>()
+
 const MEDIUM_DETENT = 50
 const LARGE_DETENT = 100
 const IS_MANY_DETENTS = computed(() => detents.length === 2)
@@ -138,6 +142,11 @@ function onTransitionEnter() {
 }
 function onTransitionLeave() {
 	lockScrollPage(false)
+	emit('close')
+}
+
+function setFull() {
+	sheet.full = true
 }
 
 onUnmounted(() => {
@@ -147,6 +156,7 @@ onUnmounted(() => {
 defineExpose({
 	open,
 	close,
+	setFull,
 })
 </script>
 

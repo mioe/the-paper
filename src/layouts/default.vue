@@ -24,7 +24,7 @@ function handleOpenAddBookmark() {
 </script>
 
 <template>
-	<footer class="p-1.5 border-2 inline-flex translate-x-[-50%] transform bottom-4 left-[50%] fixed btn-shadow bg-lines" :style="{ '--line-op': '50%' }">
+	<footer class="p-1.5 border-2 inline-flex translate-x-[-50%] transform bottom-4 left-[50%] fixed z-1 btn-shadow bg-lines" :style="{ '--line-op': '50%' }">
 		<button class="py-2 pl-2 pr-4 border-2 bg-primary flex gap-2 items-center" tabindex="0" @click="handleOpenAddBookmark">
 			<div class="i-mi:carbon-add-large op-50 h-6 w-6 aspect-square" />
 			<span>{{ $t('Add bookmark') }}</span>

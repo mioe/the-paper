@@ -69,7 +69,7 @@ async function handleFetchMetadata() {
 
 		// Move to form step
 		step.value = 'form'
-		sheetRef.value?.open()
+		sheetRef.value?.setFull()
 	}
 	catch (error) {
 		console.error('Error fetching metadata:', error)
@@ -177,6 +177,10 @@ function close() {
 	resetForm()
 }
 
+function onClose() {
+	step.value = 'url'
+}
+
 defineExpose({
 	open,
 	close,
@@ -184,7 +188,7 @@ defineExpose({
 </script>
 
 <template>
-	<Sheet ref="sheetRef" :detents drag-indicator="visible">
+	<Sheet ref="sheetRef" :detents drag-indicator="visible" @close="onClose">
 		<div class="px-4 pb-4 max-w-md w-full">
 			<!-- Step 1: URL Input -->
 			<div v-if="step === 'url'" class="flex flex-col gap-4">

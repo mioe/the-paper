@@ -7,7 +7,7 @@ import {
 
 export default defineConfig({
 	shortcuts: [
-		['bg-primary', 'bg-[#f7f7f2f5] dark:bg-[hsl(218,_13%,_7.5%)]'],
+		['bg-primary', 'bg-[hsl(60,_24%,_96%)] dark:bg-[hsl(218,_13%,_7.5%)]'],
 		['inpt', 'px-3 py-2 border-2 w-full'],
 		['link', 'text-blue underline underline-dashed'],
 	],
