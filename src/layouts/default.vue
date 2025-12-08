@@ -2,6 +2,7 @@
 import Line from '~/components/_common/line.vue'
 import Portal from '~/components/_common/portal.vue'
 import SafeArea from '~/components/_common/safe-area.vue'
+import AppAddBookmarkSheet from '~/components/app/app.add-bookmark/app.add-bookmark.sheet.vue'
 import AppMouseHunter from '~/components/app/app.mouse-hunter.vue'
 import AppSheetAddBookmark from '~/components/app/app.sheet-add-bookmark.vue'
 
@@ -12,6 +13,7 @@ const { locale } = useI18n()
 
 const userName = ref(pb.authStore.record?.name)
 const appSheetAddBookmarkRef = ref<InstanceType<typeof AppSheetAddBookmark> | null>(null)
+const appAddBookmarkSheetRef = ref<InstanceType<typeof AppAddBookmarkSheet> | null>(null)
 
 function handleLogout() {
 	pb.authStore.clear()
@@ -19,7 +21,7 @@ function handleLogout() {
 }
 
 function handleOpenAddBookmark() {
-	appSheetAddBookmarkRef.value?.open()
+	appAddBookmarkSheetRef.value?.open()
 }
 </script>
 
@@ -111,4 +113,5 @@ function handleOpenAddBookmark() {
 
 	<AppMouseHunter />
 	<AppSheetAddBookmark ref="appSheetAddBookmarkRef" />
+	<AppAddBookmarkSheet ref="appAddBookmarkSheetRef" />
 </template>

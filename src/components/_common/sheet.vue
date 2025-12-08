@@ -5,7 +5,7 @@ const { detents = ['large'], dragIndicator = 'automatic' } = defineProps<{
 }>()
 
 const emit = defineEmits<{
-	close: []
+	'after-close': []
 }>()
 
 const MEDIUM_DETENT = 50
@@ -142,11 +142,11 @@ function onTransitionEnter() {
 }
 function onTransitionLeave() {
 	lockScrollPage(false)
-	emit('close')
+	emit('after-close')
 }
 
-function setFull() {
-	sheet.full = true
+function setFull(isFull = true) {
+	sheet.full = isFull
 }
 
 onUnmounted(() => {

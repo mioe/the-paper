@@ -115,6 +115,7 @@ declare global {
   const until: typeof import('@vueuse/core').until
   const useActiveElement: typeof import('@vueuse/core').useActiveElement
   const useAnimate: typeof import('@vueuse/core').useAnimate
+  const useAppAddBookmark: typeof import('./stores/app.add-bookmark').useAppAddBookmark
   const useAppStore: typeof import('./stores/app').useAppStore
   const useArrayDifference: typeof import('@vueuse/core').useArrayDifference
   const useArrayEvery: typeof import('@vueuse/core').useArrayEvery
@@ -424,6 +425,7 @@ declare module 'vue' {
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useAnimate: UnwrapRef<typeof import('@vueuse/core')['useAnimate']>
+    readonly useAppAddBookmark: UnwrapRef<typeof import('./stores/app.add-bookmark')['useAppAddBookmark']>
     readonly useAppStore: UnwrapRef<typeof import('./stores/app')['useAppStore']>
     readonly useArrayDifference: UnwrapRef<typeof import('@vueuse/core')['useArrayDifference']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
