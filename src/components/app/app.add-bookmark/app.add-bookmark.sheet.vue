@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Sheet from '~/components/_common/sheet.vue'
+import Step1 from '~/components/app/app.add-bookmark/app.add-bookmark.step1.vue'
 
 const sheetRef = ref<InstanceType<typeof Sheet> | null>(null)
 
@@ -45,12 +46,7 @@ defineExpose({
 
 <template>
 	<Sheet ref="sheetRef" :detents drag-indicator="visible" @after-close="onAfterClose">
-		<section v-if="currentStep === 0">
-			STEP 0
-			<button @click="handleSubmitFirstStep">
-				go to 1
-			</button>
-		</section>
+		<Step1 v-if="currentStep === 0" />
 
 		<section v-else-if="currentStep === 1">
 			STEP 1
