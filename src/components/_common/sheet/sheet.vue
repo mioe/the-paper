@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import DragIndicator from '~/components/_common/sheet/sheet.drag-indicator.vue'
+
 const { detents = ['large'], dragIndicator = 'automatic' } = defineProps<{
 	detents?: ('medium' | 'large')[]
 	dragIndicator?: 'automatic' | 'hidden' | 'visible'
@@ -195,10 +197,9 @@ defineExpose({
 						]"
 					>
 						<header class="p-2 flex flex-shrink-0 w-full items-center top-0 justify-center sticky">
-							<button
+							<DragIndicator
 								v-if="showDragIndicator"
-								class="text-orange border-1.5 border-orange bg-orange bg-op-20 h-4 w-12 bg-lines"
-								tabindex="0"
+								class="text-blue bg-blue bg-op-20"
 								@click="handleDragIndicator"
 							/>
 						</header>

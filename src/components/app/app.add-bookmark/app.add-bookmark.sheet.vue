@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import Sheet from '~/components/_common/sheet.vue'
+import SheetDragIndicator from '~/components/_common/sheet/sheet.drag-indicator.vue'
+import Sheet from '~/components/_common/sheet/sheet.vue'
 import Step1 from '~/components/app/app.add-bookmark/app.add-bookmark.step1.vue'
 
-const sheetRef = ref<InstanceType<typeof Sheet> | null>(null)
+const sheetRef = shallowRef<InstanceType<typeof Sheet> | null>(null)
 
 const appAddBookmarkStore = useAppAddBookmark()
 const detents = computed<('medium' | 'large')[]>(() =>
@@ -46,6 +47,18 @@ defineExpose({
 
 <template>
 	<Sheet ref="sheetRef" :detents drag-indicator="visible" @after-close="onAfterClose">
+		<header class="mb-auto flex gap-4">
+			<SheetDragIndicator
+				v-for="i in [0, 1, 2] as (0 | 1 | 2)[]"
+				:key="`step-${i + 1}`"
+				:class="{
+					'op-10': currentStep !== i,
+					'text-orange bg-orange bg-op-20': currentStep === i,
+				}"
+				@click="appAddBookmarkStore.state.step = i"
+			/>
+		</header>
+
 		<Step1 v-if="currentStep === 0" />
 
 		<section v-else-if="currentStep === 1">
@@ -61,5 +74,9 @@ defineExpose({
 				go to 0
 			</button>
 		</section>
+
+		<footer class="mt-auto op-0 flex">
+			by mioe
+		</footer>
 	</Sheet>
 </template>

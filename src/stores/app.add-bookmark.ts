@@ -1,5 +1,7 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
 
+import type { BookmarkMetadata } from '~/services/bookmark.service'
+
 function setDefaultState(): {
 	step: 0 | 1 | 2
 } {
@@ -10,17 +12,18 @@ function setDefaultState(): {
 
 function setDefaultForm(): {
 	idle: boolean
-	url: string | null
+	href: string | null
 } {
 	return {
 		idle: true,
-		url: null,
+		href: null,
 	}
 }
 
 export const useAppAddBookmark = defineStore('app.add-bookmark', () => {
 	const state = reactive(structuredClone(setDefaultState()))
 	const form = reactive(structuredClone(setDefaultForm()))
+	const metadata = ref<BookmarkMetadata | null>(null)
 
 	function $reset() {
 		const dState = structuredClone(setDefaultState())
@@ -31,6 +34,7 @@ export const useAppAddBookmark = defineStore('app.add-bookmark', () => {
 	return {
 		state,
 		form,
+		metadata,
 
 		$reset,
 	}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { BookmarkMetadata } from '~/services/bookmark.service'
 
-import Sheet from '~/components/_common/sheet.vue'
+import Sheet from '~/components/_common/sheet/sheet.vue'
 import { fetchUrlMetadata } from '~/services/bookmark.service'
 import { useBookmarkStore } from '~/stores/bookmark'
 
