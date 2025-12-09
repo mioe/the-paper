@@ -30,7 +30,7 @@ async function onSubmit() {
 </script>
 
 <template>
-	<form ref="formRef" class="flex flex-col gap-3" @submit.prevent="onSubmit">
+	<form ref="formRef" class="py-3 flex flex-col gap-3" @submit.prevent="onSubmit">
 		<h2>{{ $t('Add bookmark') }}</h2>
 
 		<div>
